@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
-const TodoSchema = new mongoose.Schema(
+const TodoListSchema = new mongoose.Schema(
   {
-    task: {
+    list: {
       type: String,
       required: true,
       minlength: 1,
@@ -29,5 +29,5 @@ const TodoSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const TodoModel = mongoose.model("Todo", TodoSchema);
-module.exports = TodoModel;
+const TodoListModel = mongoose.model("Todo", TodoListSchema);
+module.exports = TodoListModel;
