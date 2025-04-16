@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const cors = require("cors");
 const TodoModel = require("./Models/Todo.js");
-
+const TodoListModel = require("./Models/TodoList.js");
 const app = express();
 
 app.use(cors());
@@ -87,15 +87,20 @@ app.delete("/delete/:id", (req, res) => {
     .catch((error) => console.log(error));
 });
 
-app.post("addlist", (req, res) => {});
+app.get("/getLists", (req, res) => {
+  console.log("GET /get HIT!");
+  TodoListModel.find()
+    .then((result) => res.json(result))
+    .catch((error) => console.log(error));
+});
 
-app.post("/addlist", (req, res) => {
-  const list = req.body.task;
+app.post("/addList", (req, res) => {
+  const list = req.body.list;
   TodoListModel.create({
-    list: list,
+    list,
   })
-    .then((list) => {
-      res.json(list);
+    .then((lists) => {
+      res.json(lists);
     })
     .catch((error) => res.json(error));
 });
